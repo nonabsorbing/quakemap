@@ -12,17 +12,16 @@ d3.json(queryUrl, function(data) {
 function createFeatures(earthquakeData) {
   // Define a function we want to run once for each feature in the features array
   // Give each feature a popup describing the place and time of the earthquake
-  function onEachFeature(feature, layer) {
+  //  function onEachFeature(feature, layer) {
         var thisFeature = earthquakeData; 
         console.log(thisFeature);
-//         L.circle([thisFeature.geometry.coordinates[0], thisFeature.geometry.coordinates[1]], 
-// {
-//               stroke: true,
-//               fillOpacity: 0.75,
-//               color: "white",        
-//               fillColor: "red",
-//               radius: thisFeature.properties.mag * 10000
-//             }).
+        L.circle([thisFeature.geometry.coordinates[0], thisFeature.geometry.coordinates[1]], 
+              stroke: true,
+              fillOpacity: 0.75,
+              color: "white", 
+              radius: 100000})        
+              .addTo(myMap);
+
 layer.bindPopup("<h3>" + feature.properties.place +
       "</h3><hr><p>" + new Date(feature.properties.time) + "</p>" 
      
@@ -39,7 +38,7 @@ layer.bindPopup("<h3>" + feature.properties.place +
   createMap(earthquakes);
 }
 
-// //this function to run a for loop? 
+// //this function to run a loop? 
 // function createFeatures2(earthquakeData){
 //   var eachEarthquake = []; 
   
@@ -114,16 +113,5 @@ function createMap(earthquakes) {
   // Add the layer control to the map
   L.control.layers(baseMaps).addTo(myMap);
 
-  L.circle([45, -93],  
-            {
-            stroke: true,
-            fillOpacity: 0.75,
-            color: "white", 
-            radius: 100000})        
-    //         fillColor: getColor(thisFeature.properties.mag),
 
-    //       }).bindPopup("<h3>" +  thisFeature.properties.place +
-    //       "</h3><hr><p>" + thisFeature.properties.time +  
-    //       "</h3><hr><p>"  +  thisFeature.properties.mag +"</p>")
-          .addTo(myMap);
 }
